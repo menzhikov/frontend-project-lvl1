@@ -1,3 +1,10 @@
 #!/usr/bin/env node
 
-console.log('Welcome to the Brain Games!');
+import question from '..';
+
+const greetings = () => {
+    console.log('Welcome to the Brain Games!');
+}
+
+greetings();
+question();
