@@ -1,11 +1,12 @@
 {
   "name": "brain-games",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "",
   "main": "",
   "bin": {
     "brain-games": "dist/bin/brain-games.js",
-    "brain-even": "dist/bin/brain-even.js"
+    "brain-even": "dist/bin/brain-even.js",
+    "brain-calc": "dist/bin/brain-calc.js"
   },
   "files": [
     "dist"
@@ -28,6 +29,7 @@
     "eslint-plugin-import": "^2.20.0"
   },
   "dependencies": {
+    "@hexlet/pairs": "^1.0.10",
     "readline-sync": "^1.4.10",
     "source-map-support": "^0.5.16"
   }
