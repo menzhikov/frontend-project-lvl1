@@ -1,7 +1,8 @@
 {
   "name": "brain-games",
-  "version": "1.8.0",
-  "description": "",
+  "version": "1.8.1",
+  "description": "app for practice on frontend development",
+  "keywords":["practice","games"],
   "main": "",
   "bin": {
     "brain-games": "dist/bin/brain-games.js",

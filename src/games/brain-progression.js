@@ -1,8 +1,9 @@
-import { getRandomInt, getAnswer, printQuestion } from '..';
-import { checkAnswer } from './brain-games';
+import getRandomInt from '..';
+import { checkAnswer, intro, game } from '../brain-games';
 
 const MAX = 20;
 const LENGTH = 10;
+const TITLE = 'What number is missing in the progression?\n';
 
 const createProgression = () => {
   const q = getRandomInt(MAX);
@@ -19,9 +20,12 @@ const progressionTurn = (score) => {
   const index = getRandomInt(LENGTH - 1);
   const correct = `${arr[index]}`;
   arr[index] = '..';
-  printQuestion(arr.join(' '));
-  const answer = getAnswer();
-  return checkAnswer(answer, correct, score);
+  return checkAnswer(arr.join(' '), correct, score);
 };
 
-export default progressionTurn;
+const run = () => {
+  intro(TITLE);
+  game(progressionTurn);
+};
+
+export default run;

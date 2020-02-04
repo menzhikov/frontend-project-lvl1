@@ -1,17 +1,20 @@
-import { getRandomInt, getAnswer, printQuestion } from '..';
-import { checkAnswer } from './brain-games';
+import getRandomInt from '..';
+import { checkAnswer, intro, game } from '../brain-games';
 
 const MAX = 20;
 const YES = 'yes';
 const NO = 'no';
+const TITLE = 'Welcome to Answer "yes" if number even otherwise answer "no".\n';
 
 const evenTurn = (score) => {
   const number = getRandomInt(MAX);
-  printQuestion(number);
-  const answer = getAnswer();
-  const isEven = number % 2 === 0;
-  const correct = isEven ? YES : NO;
-  return checkAnswer(answer, correct, score);
+  const correct = number % 2 === 0 ? YES : NO;
+  return checkAnswer(number, correct, score);
 };
 
-export default evenTurn;
+const run = () => {
+  intro(TITLE);
+  game(evenTurn);
+};
+
+export default run;
