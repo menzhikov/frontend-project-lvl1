@@ -1,5 +1,5 @@
 import getRandomInt from '..';
-import { checkAnswer, intro, game } from '../brain-games';
+import game from '../brain-games';
 
 const MAX = 20;
 const LENGTH = 10;
@@ -15,17 +15,18 @@ const createProgression = () => {
   return arr;
 };
 
-const progressionTurn = (score) => {
+const progressionTurn = () => {
   const arr = createProgression();
   const index = getRandomInt(LENGTH - 1);
-  const correct = `${arr[index]}`;
+  const answer = `${arr[index]}`;
   arr[index] = '..';
-  return checkAnswer(arr.join(' '), correct, score);
+  const query = arr.join(' ');
+
+  return { query, answer };
 };
 
 const run = () => {
-  intro(TITLE);
-  game(progressionTurn);
+  game(progressionTurn, TITLE);
 };
 
 export default run;

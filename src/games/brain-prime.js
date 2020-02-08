@@ -1,5 +1,5 @@
 import getRandomInt from '..';
-import { checkAnswer, intro, game } from '../brain-games';
+import game from '../brain-games';
 
 const MAX = 3000;
 const TITLE = 'Answer "yes" if given number is prime. Otherwise answer "no".\n';
@@ -22,15 +22,16 @@ const isPrime = (n) => {
   return true;
 };
 
-const primeTurn = (score) => {
+const primeTurn = () => {
   const num = getRandomInt(MAX);
-  const correct = isPrime(num) ? 'yes' : 'no';
-  return checkAnswer(`${num}`, correct, score);
+  const query = `${num}`;
+  const answer = isPrime(num) ? 'yes' : 'no';
+
+  return { query, answer };
 };
 
 const run = () => {
-  intro(TITLE);
-  game(primeTurn);
+  game(primeTurn, TITLE);
 };
 
 export default run;

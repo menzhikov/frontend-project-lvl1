@@ -1,5 +1,5 @@
 import getRandomInt from '..';
-import { checkAnswer, intro, game } from '../brain-games';
+import game from '../brain-games';
 
 const MAX = 20;
 const TITLE = 'Find the greatest common divisor of given numbers.\n';
@@ -11,15 +11,17 @@ const calcGCD = (a, b) => {
   return calcGCD(b, a % b);
 };
 
-const gcdTurn = (score) => {
+const gcdTurn = () => {
   const a = getRandomInt(MAX);
   const b = getRandomInt(MAX);
-  return checkAnswer(`${a} ${b}`, `${calcGCD(a, b)}`, score);
+  const query = `${a} ${b}`;
+  const answer = `${calcGCD(a, b)}`;
+
+  return { query, answer };
 };
 
 const run = () => {
-  intro(TITLE);
-  game(gcdTurn);
+  game(gcdTurn, TITLE);
 };
 
 export default run;

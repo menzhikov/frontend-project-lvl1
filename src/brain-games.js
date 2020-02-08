@@ -10,18 +10,6 @@ const intro = (title) => {
   }
 };
 
-const game = (turn) => {
-  let score = 0;
-  userName = readlineSync.question('May I have your name? ');
-  console.log(`Hello, ${userName}!\n`);
-  while (score < MAX_SCORE) {
-    score = turn(score);
-  }
-  console.log(`Congratulations, ${userName}!`);
-};
-
-const printErrorMessage = (answer, correct) => console.log(`'${answer}' is wrong answer ;(. Correct answer was '${correct}'.\nLet's try again, ${userName}!`);
-
 const checkAnswer = (query, correct, score) => {
   console.log(`Question: ${query}`);
   const answer = readlineSync.question('Your answer: ');
@@ -29,8 +17,24 @@ const checkAnswer = (query, correct, score) => {
     console.log('Correct!');
     return score + 1;
   }
-  printErrorMessage(answer, correct);
+  console.log(`'${answer}' is wrong answer ;(. Correct answer was '${correct}'.\nLet's try again, ${userName}!`);
   return score;
 };
 
-export { intro, game, checkAnswer };
+const game = (turn, title) => {
+  intro(title);
+
+  if (turn != null) {
+    let score = 0;
+    userName = readlineSync.question('May I have your name? ');
+    console.log(`Hello, ${userName}!\n`);
+    while (score < MAX_SCORE) {
+      const response = turn();
+      score = checkAnswer(response.query, response.answer, score);
+    }
+
+    console.log(`Congratulations, ${userName}!`);
+  }
+};
+
+export default game;
