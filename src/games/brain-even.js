@@ -1,20 +1,21 @@
 import getRandomInt from '..';
 import game from '../brain-games';
 
+const MIN = 0;
 const MAX = 20;
 const YES = 'yes';
 const NO = 'no';
-const TITLE = 'Welcome to Answer "yes" if number even otherwise answer "no".\n';
+const TITLE = 'Welcome to Answer "yes" if number even otherwise answer "no".';
 
-const evenTurn = () => {
-  const query = getRandomInt(MAX);
-  const answer = query % 2 === 0 ? YES : NO;
+const makeQuiz = () => {
+  const question = getRandomInt(MIN, MAX);
+  const answer = question % 2 === 0 ? YES : NO;
 
-  return { query, answer };
+  return { question, answer };
 };
 
 const run = () => {
-  game(evenTurn, TITLE);
+  game(makeQuiz, TITLE);
 };
 
 export default run;

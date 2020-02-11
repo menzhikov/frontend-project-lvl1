@@ -1,33 +1,32 @@
-import { cons, car, cdr } from '@hexlet/pairs';
 import getRandomInt from '..';
 import game from '../brain-games';
 
+const MIN = 0;
 const MAX = 25;
-const TITLE = 'What is the result of the expression?\n';
+const TITLE = 'What is the result of the expression?';
 const operations = ['+', '-', '*'];
 
-const getExpression = (a, b, operation) => {
+const calculate = (a, b, operation) => {
   switch (operation) {
-    case '+': return cons(`${a} + ${b}`, `${a + b}`);
-    case '-': return cons(`${a} - ${b}`, `${a - b}`);
-    case '*': return cons(`${a} * ${b}`, `${a * b}`);
+    case '+': return a + b;
+    case '-': return a - b;
+    case '*': return a * b;
     default: return null;
   }
 };
 
-const calcTurn = () => {
-  const a = getRandomInt(MAX);
-  const b = getRandomInt(MAX);
+const makeQuiz = () => {
+  const a = getRandomInt(MIN, MAX);
+  const b = getRandomInt(MIN, MAX);
   const operation = operations[getRandomInt(MAX) % operations.length];
-  const pair = getExpression(a, b, operation);
-  const query = car(pair);
-  const answer = cdr(pair);
+  const answer = calculate(a, b, operation);
+  const question = `${a} ${operation} ${b}`;
 
-  return { query, answer };
+  return { question, answer: answer.toString() };
 };
 
 const run = () => {
-  game(calcTurn, TITLE);
+  game(makeQuiz, TITLE);
 };
 
 export default run;
