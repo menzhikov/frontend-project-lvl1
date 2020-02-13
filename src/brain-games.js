@@ -14,16 +14,14 @@ const game = (quiz, title) => {
   intro(title);
 
   if (quiz != null) {
-    let score = 0;
     userName = readlineSync.question('\nMay I have your name? ');
     console.log(`Hello, ${userName}!\n`);
-    while (score < MAX_SCORE) {
+    for (let i = 0; i < MAX_SCORE; i += 1) {
       const response = quiz();
       console.log(`Question: ${response.question}`);
       const answer = readlineSync.question('Your answer: ');
       if (answer === response.answer) {
         console.log('Correct!');
-        score += 1;
       } else {
         console.log(`'${answer}' is wrong answer ;(. Correct answer was '${response.answer}'.\nLet's try again, ${userName}!`);
       }
