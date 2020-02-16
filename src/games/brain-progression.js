@@ -1,16 +1,16 @@
-import getRandomInt from '..';
-import game from '../brain-games';
+import getRandomInt from '../utils';
+import play from '../brain-games-engine';
 
-const MIN = 0;
-const MAX = 20;
-const LENGTH = 10;
-const TITLE = 'What number is missing in the progression?';
+const min = 0;
+const max = 20;
+const length = 10;
+const title = 'What number is missing in the progression?';
 
 const createProgression = () => {
-  const firstTerm = getRandomInt(MIN, MAX);
-  const difference = getRandomInt(MIN, MAX);
+  const firstTerm = getRandomInt(min, max);
+  const difference = getRandomInt(min, max);
   const progression = [];
-  for (let i = 0; i < LENGTH; i += 1) {
+  for (let i = 0; i < length; i += 1) {
     progression.push(firstTerm + i * difference);
   }
   return progression;
@@ -18,7 +18,7 @@ const createProgression = () => {
 
 const makeQuiz = () => {
   const progression = createProgression();
-  const answerIndex = getRandomInt(MIN, LENGTH - 1);
+  const answerIndex = getRandomInt(min, length - 1);
   const answer = `${progression[answerIndex]}`;
   progression[answerIndex] = '..';
   const question = progression.join(' ');
@@ -27,7 +27,7 @@ const makeQuiz = () => {
 };
 
 const run = () => {
-  game(makeQuiz, TITLE);
+  play(makeQuiz, title);
 };
 
 export default run;

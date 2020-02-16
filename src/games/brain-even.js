@@ -1,21 +1,19 @@
-import getRandomInt from '..';
-import game from '../brain-games';
+import getRandomInt from '../utils';
+import play from '../brain-games-engine';
 
-const MIN = 0;
-const MAX = 20;
-const YES = 'yes';
-const NO = 'no';
-const TITLE = 'Welcome to Answer "yes" if number even otherwise answer "no".';
+const min = 0;
+const max = 20;
+const title = 'Welcome to Answer "yes" if number even otherwise answer "no".';
 
 const makeQuiz = () => {
-  const question = getRandomInt(MIN, MAX);
-  const answer = question % 2 === 0 ? YES : NO;
+  const question = getRandomInt(min, max);
+  const answer = question % 2 === 0 ? 'yes' : 'no';
 
   return { question, answer };
 };
 
 const run = () => {
-  game(makeQuiz, TITLE);
+  play(makeQuiz, title);
 };
 
 export default run;

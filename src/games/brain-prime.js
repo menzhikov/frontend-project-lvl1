@@ -1,9 +1,9 @@
-import getRandomInt from '..';
-import game from '../brain-games';
+import getRandomInt from '../utils';
+import play from '../brain-games-engine';
 
-const MIN = 0;
-const MAX = 3000;
-const TITLE = 'Answer "yes" if given number is prime. Otherwise answer "no".';
+const min = 0;
+const max = 3000;
+const title = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
 const isPrime = (n) => {
   if (n <= 3) {
@@ -24,14 +24,14 @@ const isPrime = (n) => {
 };
 
 const makeQuiz = () => {
-  const num = getRandomInt(MIN, MAX);
-  const answer = isPrime(num) ? 'yes' : 'no';
+  const question = getRandomInt(min, max);
+  const answer = isPrime(question) ? 'yes' : 'no';
 
-  return { question: num.toString(), answer };
+  return { question: question.toString(), answer };
 };
 
 const run = () => {
-  game(makeQuiz, TITLE);
+  play(makeQuiz, title);
 };
 
 export default run;

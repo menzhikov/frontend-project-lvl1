@@ -1,9 +1,9 @@
-import getRandomInt from '..';
-import game from '../brain-games';
+import getRandomInt from '../utils';
+import play from '../brain-games-engine';
 
-const MIN = 0;
-const MAX = 25;
-const TITLE = 'What is the result of the expression?';
+const min = 0;
+const max = 25;
+const title = 'What is the result of the expression?';
 const operations = ['+', '-', '*'];
 
 const calculate = (a, b, operation) => {
@@ -16,9 +16,9 @@ const calculate = (a, b, operation) => {
 };
 
 const makeQuiz = () => {
-  const a = getRandomInt(MIN, MAX);
-  const b = getRandomInt(MIN, MAX);
-  const operation = operations[getRandomInt(MAX) % operations.length];
+  const a = getRandomInt(min, max);
+  const b = getRandomInt(min, max);
+  const operation = operations[getRandomInt(max) % operations.length];
   const answer = calculate(a, b, operation);
   const question = `${a} ${operation} ${b}`;
 
@@ -26,7 +26,7 @@ const makeQuiz = () => {
 };
 
 const run = () => {
-  game(makeQuiz, TITLE);
+  play(makeQuiz, title);
 };
 
 export default run;
